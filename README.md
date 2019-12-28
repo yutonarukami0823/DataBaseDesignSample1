@@ -9,19 +9,19 @@ T# README
 |password|string|null: false|
 |nickname|string|null: false|
 ### Association
-- has_many :tweets
-- has_many :comments
+- has_many :group_user: 
+- has_many :group,through: :group_user
 
 
-## tweetsテーブル
+## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
 |image|text||
 |text|text||
 |user_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :user
-- has_many :comments
+- belongs_to :group_user;
+- has_many :user,through: :group_user;
 
 ## groups_usersテーブル
 
@@ -32,4 +32,4 @@ T# README
 
 ### Association
 - belongs_to :group
-- belongs_to :userA
+- belongs_to :user

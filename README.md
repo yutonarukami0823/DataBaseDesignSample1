@@ -7,10 +7,10 @@ T# README
 |------|----|-------|
 |email|string|null: false|
 |password|string|null: false|
-|nickname|string|null: false|
+|nickname|string|null: false: index: true|
 ### Association
-- has_many :group_user: 
-- has_many :group,through: :group_user
+- has_many :group_users: 
+- has_many :group,through: :group_users
 
 
 ## messageテーブル
@@ -18,24 +18,23 @@ T# README
 |------|----|-------|
 |image|string||
 |body|text||
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
-belongs_user_id
-belongs_group_id
-### Association
-- has_many :user,through: :group_user;
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
+### Association
+- has_many :messages
 ## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_id|integer|null: false, foreign_key: true|
 
+|nickname|string|null: false: index: true|
+### Association
 ## groups_usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|group_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|group_id|references|null: false, foreign_key: true|
 
 ### Association
 - belongs_to :group
